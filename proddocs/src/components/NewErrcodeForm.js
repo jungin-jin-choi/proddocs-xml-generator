@@ -1,8 +1,12 @@
 import React from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-
 import axios from "axios";
 import { API_URL } from "../constants";
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
+
 
 class NewErrcodeForm extends React.Component {
   state = {
@@ -19,7 +23,7 @@ class NewErrcodeForm extends React.Component {
   }
 
   onChange = e => {
-    this.setState({ [e.target.code]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   createErrcode = e => {

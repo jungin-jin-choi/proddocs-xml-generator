@@ -15,7 +15,10 @@ class Home extends Component {
   }
 
   getErrorcodes = () => {
-    axios.get(API_URL).then(res => this.setState({ errorcodes: res.data }));
+    axios.get(API_URL).then(res => 
+        this.setState({ errorcodes: res.data })
+        );
+    console.log(this.state.errorcodes);
   };
 
   resetState = () => {
