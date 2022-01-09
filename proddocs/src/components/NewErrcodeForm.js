@@ -67,7 +67,7 @@ class NewErrcodeForm extends React.Component {
             value={this.defaultIfEmpty(this.state.slug)}
           />
         </FormGroup>
-        <Button>Send</Button>
+        <Button>Enter</Button>
       </Form>
     );
   }

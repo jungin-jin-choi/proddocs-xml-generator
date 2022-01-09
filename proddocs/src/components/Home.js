@@ -4,6 +4,7 @@ import ErrorcodeList from "./ErrorcodeList";
 import NewErrorcodeModal from "./NewErrorcodeModal";
 import axios from "axios";
 import { API_URL } from "../constants";
+import XmlGenerator from "./XmlGenerator";
 
 class Home extends Component {
   state = {
@@ -30,15 +31,19 @@ class Home extends Component {
       <Container style={{ marginTop: "20px" }}>
         <Row>
           <Col>
+            <NewErrorcodeModal create={true} resetState={this.resetState}/>
+            <XmlGenerator create={true} resetState={this.resetState} />
+          </Col>
+          {/* <Col>
+            <XmlGenerator create={true} resetState={this.resetState} />
+          </Col> */}
+        </Row>
+        <Row style={{ marginTop: "20px" }}>
+          <Col>
             <ErrorcodeList
               errorcodes={this.state.errorcodes}
               resetState={this.resetState}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NewErrorcodeModal create={true} resetState={this.resetState} />
           </Col>
         </Row>
       </Container>
