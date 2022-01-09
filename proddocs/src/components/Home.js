@@ -32,7 +32,8 @@ class Home extends Component {
         <Row>
           <Col>
             <NewErrorcodeModal create={true} resetState={this.resetState}/>
-            <XmlGenerator create={true} resetState={this.resetState} />
+            <XmlGenerator create={true} resetState={this.resetState} text="Code xml 생성하기" type="code"/>
+            <XmlGenerator create={true} resetState={this.resetState} text="Slug xml 생성하기" type="slug"/>
           </Col>
           {/* <Col>
             <XmlGenerator create={true} resetState={this.resetState} />

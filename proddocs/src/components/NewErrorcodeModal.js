@@ -26,7 +26,7 @@ class NewErrorcodeModal extends Component {
           color="primary"
           className="float-right"
           onClick={this.toggle}
-          style={{ minWidth: "200px", marginRight: "40px" }}
+          style={{ minWidth: "200px"}}
         >
           추가하기
         </Button>

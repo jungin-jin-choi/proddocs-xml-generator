@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
-import { DOWNLOAD_URL } from "../constants";
+import { DOWNLOAD_SLUG_URL, DOWNLOAD_CODE_URL } from "../constants";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -26,9 +26,24 @@ class XmlForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  generateXml = e => {
+  generateCodeXml = e => {
     e.preventDefault();
-    axios.post(DOWNLOAD_URL, this.state).then((response) => {
+    axios.post(DOWNLOAD_CODE_URL, this.state).then((response) => {
+        this.props.resetState();
+        this.props.toggle();
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        const filename = this.state.filename
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+      });
+  }
+
+  generateSlugXml = e => {
+    e.preventDefault();
+    axios.post(DOWNLOAD_SLUG_URL, this.state).then((response) => {
         this.props.resetState();
         this.props.toggle();
         const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -47,7 +62,7 @@ class XmlForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.props.errorcode ? this.generateXml : this.generateXml}>
+      <Form onSubmit={this.props.type=='code' ? this.generateCodeXml : this.generateSlugXml}>
         <FormGroup>
           <Label for="code">Prefix for string resource</Label>
           <Input

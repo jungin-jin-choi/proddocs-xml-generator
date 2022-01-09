@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.code_list),
-    path('download/', views.generate_xml),
+    path('download/code/', views.generate_code_xml),
+    path('download/slug/', views.generate_slug_xml),
 ]

@@ -15,20 +15,21 @@ class XmlGenerator extends Component {
 
   render() {
     const create = this.props.create;
+    const type = this.props.type;
 
     var title = "Xml 편집하기";
     var button = <Button onClick={this.toggle}>Edit</Button>;
     if (create) {
-      title = "Xml 생성하기";
+      title = "Error Code xml 생성하기";
 
       button = (
         <Button
           color="primary"
           className="float-right"
           onClick={this.toggle}
-          style={{ minWidth: "200px" }}
+          style={{ minWidth: "200px", marginLeft: "40px" }}
         >
-          XML 생성하기
+          {this.props.text}
         </Button>
       );
     }
@@ -40,6 +41,7 @@ class XmlGenerator extends Component {
           <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
           <ModalBody>
             <XmlForm
+              type={this.props.type}
               resetState={this.props.resetState}
               toggle={this.toggle}
               errorcode={this.props.errorcode}
